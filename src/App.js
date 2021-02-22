@@ -6,35 +6,36 @@ import ToDoContainer from './components/ToDoContainer';
 import InputBlock from './components/InputBlock';
 import StatusFilters from './components/StatusFilters';
 
-const messagesInit = [
-    {
-        id: 0,
-        text: 'first',
-        star: false,
-        like: false,
-    },
-    {
-        id: 1,
-        text: 'second',
-        star: false,
-        like: false,
-    },
-    {
-        id: 2,
-        text: 'third',
-        star: false,
-        like: false,
-    },
-    {
-        id: 3,
-        text: 'forth',
-        star: false,
-        like: false,
-    },
-];
+// const messagesInit = [
+//     {
+//         id: 0,
+//         text: 'first',
+//         star: false,
+//         like: false,
+//     },
+//     {
+//         id: 1,
+//         text: 'second',
+//         star: false,
+//         like: false,
+//     },
+//     {
+//         id: 2,
+//         text: 'third',
+//         star: false,
+//         like: false,
+//     },
+//     {
+//         id: 3,
+//         text: 'forth',
+//         star: false,
+//         like: false,
+//     },
+// ];
 
 function App() {
-    const [messages, setMessages] = useState(messagesInit);
+    const messagesInit = JSON.parse(localStorage.getItem('messages'));
+    const [messages, setMessages] = useState(messagesInit ? messagesInit : []);
     const [searchMessages, setSearchMessages] = useState(messages);
     const [likedMessages, setLikedMessages] = useState(searchMessages);
     const [all, setAll] = useState(true);
@@ -114,6 +115,7 @@ function App() {
     useEffect(() => {
         setSearchMessages([...messages]);
         setLikedMessages([...messages]);
+        localStorage.setItem('messages', JSON.stringify(messages));
     }, [messages]);
 
     return (

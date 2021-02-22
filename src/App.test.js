@@ -58,19 +58,25 @@ test('Renders submit button', () => {
 
 test("renders post's text", () => {
     render(<App />);
-    const postText = screen.getAllByTestId('postText');
+    const postText = screen.queryAllByTestId('postText');
+    const formButton = screen.getByTestId('form-button');
+    fireEvent.click(formButton);
     postText.forEach((text) => expect(text).toBeInTheDocument(true));
 });
 
 test("renders star's button", () => {
     render(<App />);
-    const postStar = screen.getAllByTestId('postStar');
+    const postStar = screen.queryAllByTestId('postStar');
+    const formButton = screen.getByTestId('form-button');
+    fireEvent.click(formButton);
     postStar.forEach((star) => expect(star).toBeInTheDocument(true));
 });
 
 test("renders delete's button", () => {
     render(<App />);
-    const postDelete = screen.getAllByTestId('postDelete');
+    const postDelete = screen.queryAllByTestId('postDelete');
+    const formButton = screen.getByTestId('form-button');
+    fireEvent.click(formButton);
     postDelete.forEach((delBtn) => expect(delBtn).toBeInTheDocument(true));
 });
 
